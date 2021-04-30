@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+source ../bootstrap/database-logins.sh
+
+# extra database installation
+mysql_name=example.local
+mysql_application_database=example
+mysql_application_username=example
+mysql_application_password=example
+
+echo -e "\nSetting up $mysql_name\n"
+
+mysql -u root -p$mysql_root_password -Bse "CREATE USER '$mysql_application_username'@'localhost' IDENTIFIED BY '$mysql_application_password';"
+mysql -u root -p$mysql_root_password -Bse "GRANT ALL PRIVILEGES ON $mysql_application_database . * TO '$mysql_application_username'@'localhost';"
+mysql -u root -p$mysql_root_password -Bse "REVOKE GRANT OPTION ON $mysql_application_database.* FROM '$mysql_application_username'@'localhost';"

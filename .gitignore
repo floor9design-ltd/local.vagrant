@@ -1,0 +1,23 @@
+# IDEs
+.idea
+
+# vagrant files
+/.vagrant
+
+# Configuration - sites-available
+/sites-available/*
+!sites-available/development.local.conf.example
+
+# Configuration - synced-folders
+/synced-folders/*
+!synced-folders/development.local.rb
+
+# Configuration - database
+/database/*
+!database/extra-database.sh.example
+
+
+
+
+
+
