@@ -11,7 +11,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 echo -e "\n### Setting up a swap file ###\n"
-sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=2048
 sudo /sbin/mkswap /var/swap.1
 sudo /sbin/swapon /var/swap.1
 

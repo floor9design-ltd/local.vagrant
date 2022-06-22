@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |v|
     v.name = "development.local"
-    v.memory = "1024"
+    v.memory = "2048"
     v.check_guest_additions = true
   end
 
