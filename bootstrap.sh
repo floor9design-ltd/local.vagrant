@@ -21,13 +21,34 @@ echo -e "\n### Setting up web requirements ###\n"
 sudo apt install apache2 -y
 a2enmod rewrite
 
-#php
-sudo apt install php openssl php-common php-curl php-json php-mbstring php-mysql php-xml php-zip php-intl php-sqlite3 php-xdebug php-gd -y
+# php
+sudo apt install php openssl php-common php-curl php-json php-mbstring php-mysql php-xml php-zip php-intl php-sqlite3 php-xdebug php-gd php-dev php-pear libpcre3-dev -y
 
-#mysql
+# mysql
 sudo apt install mysql-server -y
 
-#node/npm
+# mssql server drivers
+phpversion=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')
+
+sudo su <<EOF
+curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list
+EOF
+
+sudo apt-get update
+sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18
+sudo apt-get install -y unixodbc-dev
+
+sudo pecl install sqlsrv
+sudo pecl install pdo_sqlsrv
+
+sudo su <<EOF
+printf "; priority=20\nextension=sqlsrv.so\n" > /etc/php/$phpversion/mods-available/sqlsrv.ini
+printf "; priority=30\nextension=pdo_sqlsrv.so\n" > /etc/php/$phpversion/mods-available/pdo_sqlsrv.ini
+EOF
+sudo phpenmod sqlsrv pdo_sqlsrv
+
+# node/npm
 sudo apt install nodejs
 sudo apt install npm
 
@@ -52,11 +73,14 @@ echo -e "\n### Setting up framework assistants ###\n"
 sudo wget https://get.symfony.com/cli/installer -O - | bash
 sudo mv /home/vagrant/.symfony/bin/symfony /usr/local/bin/symfony
 
-# add the laravel composer global
+# Add the laravel composer global
 composer global require laravel/installer
 
-#Setup the database content
+# Setup the database content
 source /var/www/local.vagrant/bootstrap/setup-database.sh
+
+# Setup services
+sudo apt-get install supervisor
 
 # cleanup
 echo -e "\nTidying up after installation.\n"
@@ -64,5 +88,3 @@ sudo apt-get autoremove -y
 sudo service apache2 restart
 
 echo -e "\nVagrant setup complete.\n"
-
-
