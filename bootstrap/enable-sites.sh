@@ -2,7 +2,6 @@
 
 # Enable all sites in sites-available
 for file in /var/www/local.vagrant/sites-available/*; do
-  #if [ -f "$file" ] && [[ $file == *.conf ]]; then
   if [ -f "$file" ]; then
     pathless="${file##*/}"
 

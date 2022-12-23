@@ -14,3 +14,5 @@ mysql -u root -p$mysql_root_password -Bse "CREATE SCHEMA $mysql_application_data
 mysql -u root -p$mysql_root_password -Bse "CREATE USER '$mysql_application_username'@'localhost' IDENTIFIED BY '$mysql_application_password';"
 mysql -u root -p$mysql_root_password -Bse "GRANT ALL PRIVILEGES ON $mysql_application_database . * TO '$mysql_application_username'@'localhost';"
 mysql -u root -p$mysql_root_password -Bse "REVOKE GRANT OPTION ON $mysql_application_database.* FROM '$mysql_application_username'@'localhost';"
+
+## add your seeders here:

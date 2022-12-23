@@ -10,7 +10,7 @@
 
 # Configuration - synced-folders
 /synced-folders/*
-!synced-folders/development.local.rb
+!synced-folders/development.local.rb.example
 
 # Configuration - database
 /database/*

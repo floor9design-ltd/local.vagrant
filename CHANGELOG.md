@@ -6,4 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+* Upgrading to 22.02
+* Ongoing testing in the wild 
 * Initial creation of project
