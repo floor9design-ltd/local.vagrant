@@ -76,11 +76,17 @@ sudo mv /home/vagrant/.symfony/bin/symfony /usr/local/bin/symfony
 # Add the laravel composer global
 composer global require laravel/installer
 
-# Setup the database content
-source /var/www/local.vagrant/bootstrap/setup-database.sh
-
 # Setup services
 sudo apt-get install supervisor
+sudo systemctl enable cron
+
+# Setup the database content
+echo -e "\nRunning any database imports needed\n"
+source /var/www/local.vagrant/bootstrap/setup-database.sh
+
+# Run any site bootstraps
+echo -e "\nRunning any site bootstraps\n"
+source /var/www/local.vagrant/bootstrap/run-site-bootstraps.sh
 
 # cleanup
 echo -e "\nTidying up after installation.\n"

@@ -16,6 +16,10 @@
 /database/*
 !database/extra-database.sh.example
 
+# Configuration - site-bootstraps
+/site-bootstraps/*
+!site-bootstraps/site-bootstrap.sh.example
+
 
 
 

@@ -16,3 +16,6 @@ mysql -u root -p$mysql_root_password -Bse "GRANT ALL PRIVILEGES ON $mysql_applic
 mysql -u root -p$mysql_root_password -Bse "REVOKE GRANT OPTION ON $mysql_application_database.* FROM '$mysql_application_username'@'localhost';"
 
 ## add your seeders here:
+
+# An example laravel migration
+# cd /path-to-your-project && php artisan migrate:refresh --seed

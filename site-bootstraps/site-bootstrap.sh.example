@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+## add your custom bootstraps here:
+## Some examples:
+
+## Composer install
+# cd /path-to-your-project && composer install
+
+## The laravel scheduler
+# crontab -l > sitecron
+# echo "* * * * * cd /path-to-your-project && php artisan schedule:run" sitecron
+# crontab sitecron
+# rm sitecron

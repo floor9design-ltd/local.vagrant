@@ -10,7 +10,7 @@ setup.
 
 ## Features
 
-The system is preconfiured to set up all dependencies for:
+The system is preconfigured to set up all dependencies for:
 
 * php
 * mysql
@@ -20,6 +20,7 @@ The system is preconfiured to set up all dependencies for:
 These are configured with addons ready for major frameworks such as:
 
 * laravel
+* symfony
 * cakephp
 * wordpress
 
@@ -28,6 +29,7 @@ It allows quick and programmatic setup of:
 * shared folders
 * apache domains
 * database integration
+* custom bash scripts
 
 Includes DB drivers for:
 
@@ -67,11 +69,12 @@ would expect on a production server for most modern php frameworks.
 
 Without configuration, there will be no shared folders, databases/database users or apache configs.
 
-In order to configure this, the bootstrap attempts to load config files by parsing over three folders:
+In order to configure this, the bootstrap attempts to load config files by parsing over four folders:
 
 * `/synced-folders/`
 * `/sites-available/`
 * `/database/`
+* `/site-bootstraps/`
 
 ### `/synced-folders/`
 
@@ -112,12 +115,21 @@ Note that the parsing is not particularly complex, so try not to modify the base
 
 ### `/database/`
 
-The `/database/` contains bash scripts that set up databases with standard permissions. This can be extended with 
-as much code is required, for example seeders etc. 
+The `/database/` folder  contains bash scripts that set up databases with standard permissions. This can be extended 
+with as much code is required, for example: seeders etc. 
 
 To enable:
 * update `mysql_application_database`, `mysql_application_username`, `mysql_application_password` with appropriate 
 values
+
+### `/site-bootstraps/`
+
+The `/site-bootstraps/` folder contains final bash scripts to alow true site customisation. For example, you could 
+automatically enable cron jobs. This is run at the end of installation, just before the final clean up.
+
+To enable:
+* copy the example file `site-bootstrap.sh.example` and rename it to something appropriate. Eg: `mysite.local.sh`
+* add any bash code you wish to run 
 
 ## Credits
 
