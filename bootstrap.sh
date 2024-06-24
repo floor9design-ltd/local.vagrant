@@ -22,7 +22,7 @@ sudo apt install apache2 -y
 a2enmod rewrite
 
 # php
-sudo apt install php openssl php-common php-curl php-json php-mbstring php-mysql php-xml php-zip php-intl php-sqlite3 php-xdebug php-gd php-dev php-pear libpcre3-dev -y
+sudo apt install php openssl php-common php-curl php-json php-mbstring php-mysql php-xml php-zip php-intl php-sqlite3 php-xdebug php-gd php-dev php-pear libpcre3-dev php-bcmath -y
 
 # mysql
 sudo apt install mysql-server -y
@@ -49,8 +49,8 @@ EOF
 sudo phpenmod sqlsrv pdo_sqlsrv
 
 # node/npm
-sudo apt install nodejs
-sudo apt install npm
+sudo apt install nodejs -y
+sudo apt install npm -y
 
 # Other system requirements:
 sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

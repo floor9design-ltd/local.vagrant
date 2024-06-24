@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
     v.name = "development.local"
     v.memory = "2048"
     v.check_guest_additions = true
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
   end
 
   config.vm.provision :shell, path: "bootstrap.sh"
